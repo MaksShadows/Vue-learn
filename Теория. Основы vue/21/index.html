@@ -1,0 +1,92 @@
+ <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Vue JS</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <label>
+            Введите email:
+            <input
+            type="email"
+            @input="emailInput($event.target.value)"
+            :value="email">
+        </label>
+        <label>
+            Введите password:
+            <input
+            type="password"
+            :value="password"
+              @input="passwordInput($event.target.value)">
+        </label>
+
+        email: {{email}}
+        pass: {{password}}
+    </div>
+
+      <div id="app2">
+          <p>
+              Выберите кол-во продуктов:
+          </p>
+          <button type="button" @click="decreaseCount">-</button>
+          <input type="number" :value="count" :min="minCount" :max="maxCount">
+          <button type="button" @click="increaseCount">
+              +
+          </button>
+
+
+      </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            data() {
+                return {
+                    email: 'test@gmail.com',
+                    password: '123456789'
+                }
+            },
+            methods: {
+                emailInput(value){
+                   this.email =value;
+                },
+                passwordInput(value){
+                   this.password =value;
+                }
+            },
+
+
+        })
+
+              new Vue({
+              el: '#app2',
+              data() {
+              return {
+              count: 1,
+              maxCount: 10,
+              minCount: 1
+
+              }
+              },
+              methods: {
+              increaseCount() {
+              if (this.count < this.maxCount) { this.count++ } }, decreaseCount() { if (this.count> this.minCount) {
+                  this.count--
+                  }
+                  }
+
+                  },
+
+
+                  })
+    </script>
+</body>
+
+</html>
+
+

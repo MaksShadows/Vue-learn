@@ -1,0 +1,47 @@
+ <!DOCTYPE html>
+ <html lang="en">
+
+ <head>
+     <meta charset="UTF-8">
+     <title>Vue JS</title>
+ </head>
+
+ <body>
+
+     <div id="app">
+      <h2>Я найду тебя!</h2>
+      <input type="text" @input='searchText = $event.target.value'>
+      <p>Всего имен: {{names.length}}, совпадений: {{getFilteredNames.length }}</p>
+
+      <ul class="list">
+        <li
+        v-for="(name, index) in getFilteredNames"
+        :key="index">
+            {{name}}
+        </li>
+      </ul>
+
+
+     </div>
+
+     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+     <script>
+         new Vue({
+             el: '#app',
+             data() {
+                 return {
+                     searchText: '',
+                     names: ['Данил', 'Василий', 'Дмитрий', 'Григорий', 'Максим']
+                 }
+             },
+             computed: {
+                 getFilteredNames(){
+                     return this.names.filter(name => name.toLowerCase().includes(this.searchText.toLowerCase()))
+                 }
+             }
+
+         })
+     </script>
+ </body>
+
+ </html>
